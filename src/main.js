@@ -49,7 +49,7 @@ export function formatPrice(amount = 0) {
       }
     });
   if (flag) {
-    newStrArr.push("-");
+    // newStrArr.push("-");
   }
   return `${newStrArr.reverse().join("")}.${decimal ? decimal : "00"}`;
 }
