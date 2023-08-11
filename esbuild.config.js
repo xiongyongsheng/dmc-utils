@@ -1,6 +1,6 @@
 const esbuild = require("esbuild");
 const isDev = process.argv.includes("--dev");
-const target = ["chrome58", "firefox57", "safari11", "edge18"];
+const target = "es6";
 
 const callback = async (ctx) => {
   if (isDev) {
@@ -16,9 +16,9 @@ const commonOption = {
   color: true,
   // minify: false,
   // minifyWhitespace: true,
-  minifyIdentifiers: true,
-  minifySyntax: true,
-  target: "es6",
+  // minifyIdentifiers: true,
+  // minifySyntax: true,
+  target,
 };
 const startTime = new Date().getTime();
 Promise.all([
