@@ -1,6 +1,7 @@
 const esbuild = require("esbuild");
 const isDev = process.argv.includes("--dev");
-const target = "es6";
+const targetBrowser = ["chrome58", "firefox57", "safari11", "edge18"];
+const targetES = "es6";
 
 const callback = async (ctx) => {
   if (isDev) {
@@ -11,14 +12,13 @@ const callback = async (ctx) => {
   }
 };
 const commonOption = {
-  bundle: true,
+  bundle: false,
   logLevel: "info",
   color: true,
-  // minify: false,
+  // minify: true,
   // minifyWhitespace: true,
   // minifyIdentifiers: true,
-  // minifySyntax: true,
-  target,
+  minifySyntax: true,
 };
 const startTime = new Date().getTime();
 Promise.all([
@@ -28,14 +28,16 @@ Promise.all([
       entryPoints: ["./main.js"],
       outdir: "./lib",
       platform: "neutral",
+      target: targetES,
     })
     .then(callback),
   esbuild
     .context({
       ...commonOption,
-      entryPoints: ["./modules/*.js"],
+      entryPoints: ["./modules/browser/*.js", "./modules/common/*.js"],
       outdir: "./lib/modules",
       platform: "neutral",
+      target: targetES,
     })
     .then(callback),
 ]).then((result) => {
