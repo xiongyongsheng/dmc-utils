@@ -30,7 +30,8 @@ export function wxAuth({
         isWXWork ? corpId : appId
       }&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&agentid=${agentId}&state=${state}#wechat_redirect`
     );
+    return Promise.resolve("Location.replace success!");
   } else {
-    console.error("Non-WeChat environment");
+    return Promise.reject("Non-WeChat environment!");
   }
 }
