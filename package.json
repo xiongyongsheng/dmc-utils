@@ -1,6 +1,6 @@
 {
   "name": "dmc-utils",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "个人常用 util 函数方法,主要是一些 lodash.js 上没有的,在项目中又比较常用的函数.",
   "main": "./lib/main.js",
   "config": {
